@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/isse/koodi/poppis-achiever/server/services/grapQL/src/graphQL/graphQL.csproj",
+      "projectUniqueName": "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj",
       "projectName": "graphQL",
-      "projectPath": "/home/isse/koodi/poppis-achiever/server/services/grapQL/src/graphQL/graphQL.csproj",
+      "projectPath": "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj",
       "packagesPath": "/home/isse/.nuget/packages/",
-      "outputPath": "/home/isse/koodi/poppis-achiever/server/services/grapQL/src/graphQL/obj/",
+      "outputPath": "/home/isse/koodi/poppis-achiever/server/services/graphQL/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/isse/.nuget/NuGet/NuGet.Config"
