@@ -1,5 +1,11 @@
 version: "3.2"
 services:
+  user:
+    container_name: service.user
+    build:
+      dockerfile: ./User/Dockerfile
+    ports:
+      - 8000:5000
   rabbitmq:
     image: rabbitmq:3-management
     container_name: 'rabbitmq'

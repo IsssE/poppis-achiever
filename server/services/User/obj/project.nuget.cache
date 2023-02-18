@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kl6XWFeNI4tcsUjKyiw3PNX5Zsbvnu8OyzETmTw7EKk/tuwPlbE6H8nZukefPUYDVj8M7k9w9oQMNrrBGntu/A==",
+  "dgSpecHash": "h5DEtsCnl+zKS6RRdzAOe/nKkQ0I4fn/NBcAYVwo59BYihAqiShG7pkd5CPudFu0BnhrI1G/Ynrt/UjoK8c5Nw==",
   "success": true,
   "projectFilePath": "/home/isse/koodi/poppis-achiever/server/services/User/User.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/isse/.nuget/packages/microsoft.net.build.containers/0.3.2/microsoft.net.build.containers.0.3.2.nupkg.sha512"
+  ],
   "logs": []
 }
