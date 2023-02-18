@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj": {}
+    "/home/isse/koodi/poppis-achiever/server/services/User/User.csproj": {}
   },
   "projects": {
-    "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj": {
+    "/home/isse/koodi/poppis-achiever/server/services/User/User.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj",
-        "projectName": "graphQL",
-        "projectPath": "/home/isse/koodi/poppis-achiever/server/services/graphQL/graphQL.csproj",
+        "projectUniqueName": "/home/isse/koodi/poppis-achiever/server/services/User/User.csproj",
+        "projectName": "User",
+        "projectPath": "/home/isse/koodi/poppis-achiever/server/services/User/User.csproj",
         "packagesPath": "/home/isse/.nuget/packages/",
-        "outputPath": "/home/isse/koodi/poppis-achiever/server/services/graphQL/obj/",
+        "outputPath": "/home/isse/koodi/poppis-achiever/server/services/User/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/isse/.nuget/NuGet/NuGet.Config"
