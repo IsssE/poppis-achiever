@@ -3,7 +3,8 @@ services:
   user:
     container_name: service.user
     build:
-      dockerfile: ./User/Dockerfile
+      context: ./User
+      dockerfile: ./Dockerfile
     ports:
       - 8000:5000
   rabbitmq:
