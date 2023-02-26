@@ -1,0 +1,1 @@
+docker run -p 8000:5000 --name service.user service.user

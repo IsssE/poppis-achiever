@@ -1,0 +1,1 @@
+docker build -t service.user -f Dockerfile .
