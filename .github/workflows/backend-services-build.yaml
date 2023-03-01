@@ -12,6 +12,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    working-directory: ${{inputs.directory}}
     
 
     steps:
@@ -24,7 +25,7 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ${{inputs.directory}}
+      
     - name: Build
       run: dotnet build --no-restore
     
