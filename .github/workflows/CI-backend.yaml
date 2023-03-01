@@ -16,7 +16,6 @@ jobs:
     strategy:
       matrix:
         service: ["server/services/User"]
-    runs-on: ubuntu-latest
     uses: "./.github/workflows/backend-services-build.yaml"
     with:
       directory: ${{ matrix.service }}
