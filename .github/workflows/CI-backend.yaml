@@ -16,8 +16,9 @@ jobs:
     # We need this because GitHub needs to clone the branch to pipeline
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: build .NET
-        uses: "./.github/workflows/backend-services-build.yaml"
+        uses: "/IsssE/poppis-achiever/.github/workflows/backend-services-build.yaml@main"
         with:
           directory: ${{ matrix.service }}
    
