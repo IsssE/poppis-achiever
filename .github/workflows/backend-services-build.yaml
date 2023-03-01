@@ -7,7 +7,6 @@ on:
       directory:
         required: true
 
-
 jobs:
   build:
 
