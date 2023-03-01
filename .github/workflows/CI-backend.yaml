@@ -17,6 +17,6 @@ jobs:
       matrix:
         service: ["server/services/User"]
     runs-on: ubuntu-latest
-    uses: "/IsssE/poppis-achiever/.github/workflows/backend-services-build.yaml@main"
+    uses: "./.github/workflows/backend-services-build.yaml@main"
     with:
       directory: ${{ matrix.service }}
