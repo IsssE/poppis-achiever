@@ -21,5 +21,5 @@ jobs:
     - name: Docker Compose build
       run: docker compose build -f $(compose_location)
 
-    - name: Docker Compose Up
-      run: docker compose -f $(compose_location) up -d
+    # - name: Docker Compose Up
+    #   run: docker compose -f $(compose_location) up -d
