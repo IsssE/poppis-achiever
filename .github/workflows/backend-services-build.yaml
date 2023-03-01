@@ -12,8 +12,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    working-directory: ${{inputs.directory}}
-    
 
     steps:
     - uses: actions/checkout@v3
@@ -24,10 +22,13 @@ jobs:
         dotnet-version: 7.0.x
     
     - name: Restore dependencies
+      working-directory: ${{inputs.directory}}
       run: dotnet restore
-      
+
     - name: Build
+      working-directory: ${{inputs.directory}}
       run: dotnet build --no-restore
     
     - name: Test
+      working-directory: ${{inputs.directory}}
       run: dotnet test --no-build --verbosity normal
