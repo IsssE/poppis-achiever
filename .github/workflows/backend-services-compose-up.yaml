@@ -1,6 +1,12 @@
 
 name: Docker Compose Up services
 
+on:
+  workflow_run:
+    workflows: ["CI build"]
+    types:
+      - completed
+
 variables:
 - name: compose_location
   value: server/services/docker-compose.yaml 
