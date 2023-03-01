@@ -17,8 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-    - name: build .NET
-      uses: "/IsssE/poppis-achiever/.github/workflows/backend-services-build.yaml@main"
-      with:
-        directory: ${{ matrix.service }}
+    # - name: build .NET
+    #   uses: "/IsssE/poppis-achiever/.github/workflows/backend-services-build.yaml@main"
+    #   with:
+    #     directory: ${{ matrix.service }}
   
