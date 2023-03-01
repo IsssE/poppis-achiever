@@ -16,7 +16,7 @@ jobs:
     needs: checkout
     strategy:
       matrix:
-        service: ["server/services/User"]
+        service: ["server/services/User", "server/services/GraphQL"]
     uses: "./.github/workflows/backend-services-build.yaml"
     with:
       directory: ${{ matrix.service }}
