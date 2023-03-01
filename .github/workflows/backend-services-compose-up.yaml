@@ -17,8 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Docker Compose build
-      run: docker compose build -f $COMPOSE_LOCATION
+    - name: Docker Compose Up
+      run: docker compose -f $COMPOSE_LOCATION up -d
 
-    # - name: Docker Compose Up
-    #   run: docker compose -f $COMPOSE_LOCATION up -d
+    #kill containers, for now
+    - name: Docker Compose kill
+      run: docker compose -f $COMPOSE_LOCATION down
