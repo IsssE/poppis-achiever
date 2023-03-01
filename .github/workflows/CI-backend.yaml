@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    # trying to build each service
     strategy:
       matrix:
         #add path for each service here
