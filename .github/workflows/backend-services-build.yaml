@@ -6,6 +6,7 @@ on:
     inputs:
       directory:
         required: true
+        type: string
 
 jobs:
   build:
