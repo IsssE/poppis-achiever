@@ -8,9 +8,9 @@ namespace Kyykka;
 /// <example>
 /// This is an example JSON request for a mutation
 /// {
-///   "query": "mutation ($human:HumanInput!){ createHuman(human: $human) { id name } }",
+///   "query": "mutation ($user:userInput!){ createuser(user: $user) { id name } }",
 ///   "variables": {
-///     "human": {
+///     "user": {
 ///       "name": "Boba Fett"
 ///     }
 ///   }
@@ -23,12 +23,12 @@ public class KyykkaMutation : ObjectGraphType
         Name = "Mutation";
 
 
-        Field<UserType, User>("createHuman")
-        .Arguments(new QueryArguments(new QueryArgument<NonNullGraphType<UserInputType>> { Name = "human" }))
+        Field<UserType, User>("createUser")
+        .Arguments(new QueryArguments(new QueryArgument<NonNullGraphType<UserInputType>> { Name = "user" }))
         .Resolve(ctx =>
         {
             var user = ctx.GetArgument<User>("user");
-            return data.AddHuman(user);
+            return data.AddUser(user);
         });
     }
 }

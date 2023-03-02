@@ -1,7 +1,5 @@
-using System;
 using GraphQL.Instrumentation;
 using GraphQL.Types;
-using Kyykka;
 
 namespace Kyykka;
 
@@ -14,5 +12,13 @@ public class KyykkaSchema : Schema
         Mutation = (KyykkaMutation)provider.GetService(typeof(KyykkaMutation)) ?? throw new InvalidOperationException();
 
         FieldMiddleware.Use(new InstrumentFieldsMiddleware());
+    }
+}
+
+public class DemoSchema : Schema
+{
+    public DemoSchema(IServiceProvider services) : base(services)
+    {
+        Query = services.GetRequiredService<KyykkaQuery>();
     }
 }

@@ -1,7 +1,22 @@
+using GraphQL;
+using Kyykka;
 
-using Pulu;
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGraphQL(b => b
+    .AddAutoSchema<DemoSchema>()
+    // .AddGraphTypes(typeof(DemoSchema).Assembly)
+    .AddSystemTextJson());
 
-var builder = Host.CreateDefaultBuilder(args);
-builder.ConfigureWebHost(builder => builder.UseStartup<Startup>())
-            .Build()
-            .RunAsync();
+var app = builder.Build();
+app.UseDeveloperExceptionPage();
+app.UseWebSockets();
+// app.UseGraphQL<DemoSchema>();
+app.UseGraphQL("/graphql");            // url to host GraphQL endpoint
+app.UseGraphQLPlayground(
+    "/",                               // url to host Playground at
+    new GraphQL.Server.Ui.Playground.PlaygroundOptions
+    {
+        GraphQLEndPoint = "/graphql",         // url of GraphQL endpoint
+        SubscriptionsEndPoint = "/graphql",   // url of GraphQL endpoint
+    });
+await app.RunAsync();
