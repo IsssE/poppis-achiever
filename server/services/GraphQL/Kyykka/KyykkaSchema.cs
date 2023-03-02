@@ -5,9 +5,9 @@ using StarWars;
 
 namespace Kyykka;
 
-public class StarWarsSchema : Schema
+public class KyykkaSchema : Schema
 {
-    public StarWarsSchema(IServiceProvider provider)
+    public KyykkaSchema(IServiceProvider provider)
         : base(provider)
     {
         Query = (KyykkaQuery)provider.GetService(typeof(KyykkaQuery)) ?? throw new InvalidOperationException();

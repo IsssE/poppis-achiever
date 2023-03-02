@@ -16,12 +16,12 @@ namespace Pulu
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGraphQL(b => b
-                .AddHttpMiddleware<ISchema>()
-                .AddUserContextBuilder(httpContext => new GraphQLUserContext { User = httpContext.User })
+                // .AddHttpMiddleware<ISchema>()
+                // .AddUserContextBuilder(httpContext => new GraphQLUserContext { User = httpContext.User })
                 .AddSystemTextJson()
                 .AddErrorInfoProvider(opt => opt.ExposeExceptionStackTrace = true)
-                .AddSchema<StarWarsSchema>()
-                .AddGraphTypes(typeof(StarWarsSchema).Assembly));
+                .AddSchema<KyykkaSchema>()
+                .AddGraphTypes(typeof(KyykkaSchema).Assembly));
 
             services.AddSingleton<KyykkaData>();
             services.AddLogging(builder => builder.AddConsole());
@@ -33,8 +33,8 @@ namespace Pulu
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.UseGraphQL<ISchema>();
-            app.UseGraphQLPlayground();
+            // app.UseGraphQL<ISchema>();
+            // app.UseGraphQLPlayground();
         }
     }
 }
