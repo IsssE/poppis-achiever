@@ -1,6 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+using Pulu;
 
-app.Run();
+var builder = Host.CreateDefaultBuilder(args);
+builder.ConfigureWebHost(builder => builder.UseStartup<Startup>())
+            .Build()
+            .RunAsync();

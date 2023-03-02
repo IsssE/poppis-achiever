@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GraphQL" Version="7.3.0" />
+    <PackageReference Include="GraphQL.DataLoader" Version="7.3.0" />
+    <PackageReference Include="GraphQL.MicrosoftDI" Version="7.3.0" />
+    <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="7.3.0" />
+    <PackageReference Include="GraphQL.SystemTextJson" Version="7.3.0" />
+  </ItemGroup>
+
+</Project>
