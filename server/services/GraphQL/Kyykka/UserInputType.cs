@@ -1,7 +1,7 @@
 using GraphQL.Types;
 using Kyykka.Types;
 
-namespace StarWars;
+namespace Kyykka;
 
 public class UserInputType : InputObjectGraphType<User>
 {

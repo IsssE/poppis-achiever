@@ -3,7 +3,7 @@ using GraphQL.Types;
 using Kyykka;
 using Kyykka.Types;
 
-namespace StarWars;
+namespace Kyykka;
 
 /// <example>
 /// This is an example JSON request for a mutation

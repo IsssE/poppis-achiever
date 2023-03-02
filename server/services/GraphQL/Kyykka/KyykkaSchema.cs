@@ -1,7 +1,7 @@
 using System;
 using GraphQL.Instrumentation;
 using GraphQL.Types;
-using StarWars;
+using Kyykka;
 
 namespace Kyykka;
 
