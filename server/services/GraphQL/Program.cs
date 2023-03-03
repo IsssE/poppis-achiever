@@ -2,15 +2,15 @@ using GraphQL;
 using Kyykka;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddGraphQL(b => b
-    .AddAutoSchema<DemoSchema>()
-    // .AddGraphTypes(typeof(DemoSchema).Assembly)
-    .AddSystemTextJson());
+builder.Services.AddGraphQL(builder => builder
+    .AddSystemTextJson()
+    .AddSchema<DemoSchema>()
+);
 
 var app = builder.Build();
 app.UseDeveloperExceptionPage();
 app.UseWebSockets();
-// app.UseGraphQL<DemoSchema>();
+app.UseGraphQL<DemoSchema>();
 app.UseGraphQL("/graphql");            // url to host GraphQL endpoint
 app.UseGraphQLPlayground(
     "/",                               // url to host Playground at

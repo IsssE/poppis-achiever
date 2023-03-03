@@ -22,7 +22,6 @@ public class KyykkaMutation : ObjectGraphType
     {
         Name = "Mutation";
 
-
         Field<UserType, User>("createUser")
         .Arguments(new QueryArguments(new QueryArgument<NonNullGraphType<UserInputType>> { Name = "user" }))
         .Resolve(ctx =>
