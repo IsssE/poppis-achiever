@@ -6,7 +6,7 @@ namespace Kyykka;
 
 public class KyykkaQuery : ObjectGraphType<object>
 {
-    public KyykkaQuery()
+    public KyykkaQuery(KyykkaData data)
     {
         Name = "Query";
 
