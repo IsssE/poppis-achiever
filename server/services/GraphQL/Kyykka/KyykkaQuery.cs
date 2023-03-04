@@ -4,20 +4,17 @@ using Kyykka.Types;
 
 namespace Kyykka;
 
-public class KyykkaQuery : ObjectGraphType
+public class KyykkaQuery : ObjectGraphType<object>
 {
-    public KyykkaQuery()
+    public KyykkaQuery(KyykkaData data)
     {
         Name = "Query";
 
-        // Field<UserType>("user")
-        // // .Arguments(new QueryArguments(
-        // //         new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the user" }
-        // //     ))
-        // .ResolveAsync(async ctx => await data.GetUserByIdAsync(ctx.GetArgument<string>("1"))
-        // );
-
-        Field<StringGraphType>("hello")
-        .Resolve(_ => "hello world");
+        Field<UserType>("user")
+        .Arguments(new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the user" }
+            ))
+        .ResolveAsync(async ctx => await data.GetUserByIdAsync("1")
+        );
     }
 }

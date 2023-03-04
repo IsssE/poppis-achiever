@@ -1,6 +1,5 @@
 using GraphQL;
 using GraphQL.Types;
-using Kyykka;
 using Kyykka.Types;
 
 namespace Kyykka;
