@@ -13,6 +13,8 @@ builder.Services.AddGraphQL(builder => builder
 builder.Services.AddSingleton<KyykkaData>();
 builder.Services.AddSingleton<KyykkaQuery>();
 builder.Services.AddSingleton<UserType>();
+builder.Services.AddSingleton<KyykkaMutation>();
+builder.Services.AddSingleton<UserInputType>();
 
 var app = builder.Build();
 

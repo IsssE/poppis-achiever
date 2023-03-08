@@ -9,8 +9,8 @@ public class KyykkaSchema : Schema
         : base(provider)
     {
         Query = provider.GetRequiredService<KyykkaQuery>();
-        // Mutation = (KyykkaMutation)provider.GetService(typeof(KyykkaMutation)) ?? throw new InvalidOperationException();
-
+        Mutation = provider.GetRequiredService<KyykkaMutation>();
+        
         FieldMiddleware.Use(new InstrumentFieldsMiddleware());
     }
 }
