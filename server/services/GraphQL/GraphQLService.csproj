@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="GraphQL.Server.All" Version="7.3.0" />
+    <PackageReference Include="MassTransit" Version="8.0.13" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
 

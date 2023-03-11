@@ -1,8 +1,18 @@
 
-internal class UserHandler
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
+
+[Route("api/[controller]")]
+internal class UserHandler : ControllerBase
 {
-    public static string GetUser()
+    protected readonly IBus _bus;
+
+    public UserHandler(IBus bus)
     {
-            return "Tommi Linnamaa";
+        _bus = bus;
+    }
+    public async Task<string> GetUser()
+    {
+            return await Task.Run(()=> "Tommi Linnamaa");
     }
 }

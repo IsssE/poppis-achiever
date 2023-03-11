@@ -1,6 +1,7 @@
 using GraphQL;
 using GraphQL.Types;
 using Kyykka.Types;
+using MassTransit;
 
 namespace Kyykka;
 
@@ -10,11 +11,11 @@ public class KyykkaQuery : ObjectGraphType<object>
     {
         Name = "Query";
 
-        Field<UserType>("user")
+        Field<UserType>("getUser_Messaging")
         .Arguments(new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the user" }
             ))
-        .ResolveAsync(async ctx => await data.GetUserByIdAsync("1")
+        .ResolveAsync(async ctx => await data.GetUserByIdAsync(ctx, "1")
         );
     }
 }

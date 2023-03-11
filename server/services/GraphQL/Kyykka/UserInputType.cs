@@ -8,6 +8,7 @@ public class UserInputType : InputObjectGraphType<User>
     public UserInputType()
     {
         Name = "UserInput";
+        Field(x => x.Id);
         Field(x => x.Name);
     }
 }

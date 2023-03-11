@@ -1,18 +1,21 @@
 using Kyykka.Types;
+using MassTransit.Clients;
+using MassTransit;
+using static GraphQL.Validation.Rules.OverlappingFieldsCanBeMerged;
+using GraphQL;
+using MassTransit.Transports;
+using Common;
 
 namespace Kyykka;
 
 public class KyykkaData
 {
 
-    private readonly List<User> _Users = new ();
-    public KyykkaData()
+    private readonly List<User> _Users = new();
+    private readonly IBusControl _publishEndpoint;
+    public KyykkaData(IBusControl busControl)
     {
-        _Users.Add(new User
-        {
-            Id = "1",
-            Name = "Tommi Linnamaa",
-        });
+        _publishEndpoint = busControl;
     }
     public User AddUser(User Users)
     {
@@ -20,5 +23,10 @@ public class KyykkaData
         _Users.Add(Users);
         return Users;
     }
-    public Task<User> GetUserByIdAsync(string id) => Task.FromResult(_Users.FirstOrDefault(h => h.Id == id));
+    public Task<Response<User>> GetUserByIdAsync(IResolveFieldContext ctx, string id)
+    {
+        var response = _publishEndpoint.CreateRequestClient<UserRequested>().GetResponse<User>(new { MessageId = id });
+        return response;
+    }
+    
 }
