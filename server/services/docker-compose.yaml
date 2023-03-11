@@ -6,6 +6,8 @@ services:
       context: ./Common
       dockerfile: ./Dockerfile
   graphql:
+    depends_on:
+      - common
     container_name: service.graphql
     build:
       context: ./GraphQL
@@ -13,6 +15,8 @@ services:
     ports:
       - 7000:5010
   user:
+    depends_on:
+      - common
     container_name: service.user
     build:
       context: ./User
