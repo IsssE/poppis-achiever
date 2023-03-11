@@ -1,25 +1,6 @@
 version: '3.2'
 services:
-  common:
-    container_name: service.commons
-    build: 
-      dockerfile: Dockerfile.common.service
-  graphql:
-    depends_on:
-      - common
-    container_name: service.graphql
-    build:
-      dockerfile: Dockerfile.graphql.service
-    ports:
-      - 7000:5010
-  user:
-    depends_on:
-      - common
-    container_name: service.user
-    build:
-      dockerfile: Dockerfile.user.service
-    ports:
-      - 8000:5000
+
   rabbitmq:
     image: rabbitmq:3-management
     container_name: 'rabbitmq'
@@ -32,8 +13,30 @@ services:
     volumes:
         - '~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/'
     networks:
-        - rabbitmq_go_net
+        - rabbitmq_network
+
+  graphql:
+    container_name: service.graphql
+    build:
+      dockerfile: Dockerfile.graphql.service
+    ports:
+      - 7000:5010
+    networks:
+      - rabbitmq_network
+    depends_on:
+      - rabbitmq
+  
+  user:
+    container_name: service.user
+    build:
+      dockerfile: Dockerfile.user.service
+    ports:
+      - 8000:5000
+    networks:
+      - rabbitmq_network
+    depends_on:
+      - rabbitmq
 
 networks:
-  rabbitmq_go_net:
+  rabbitmq_network:
     driver: bridge

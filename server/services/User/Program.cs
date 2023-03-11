@@ -9,16 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+bool IsRunningInContainer = bool.TryParse(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), out var inDocker) && inDocker;
 
 builder.Services.AddMassTransit(x =>
 {
-    // Different tutorial ->
-    // https://medium.com/multinetinventiv/publish-and-consume-messages-with-masstransit-and-rabbitmq-on-net-6-6118377bfedb
     var entryAssembly = Assembly.GetExecutingAssembly();
     x.AddConsumers(entryAssembly);
+    var hostName = IsRunningInContainer ? Common.RabbitMqConsts.RabbitMqHostName_container : Common.RabbitMqConsts.RabbitMqHostName_local;
     x.UsingRabbitMq((context, busFactoryConfigurator) =>
     {
-        busFactoryConfigurator.Host(new Uri(Common.RabbitMqConsts.RabbitMqUri), "/", h => {
+        busFactoryConfigurator.Host(hostName,
+        "/",
+        h => {
             h.Username(Common.RabbitMqConsts.UserName);
             h.Password(Common.RabbitMqConsts.Password);
         });

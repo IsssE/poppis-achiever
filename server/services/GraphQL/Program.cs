@@ -21,10 +21,14 @@ builder.Services.AddSingleton<UserType>();
 builder.Services.AddSingleton<KyykkaMutation>();
 builder.Services.AddSingleton<UserInputType>();
 
+bool IsRunningInContainer = bool.TryParse(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), out var inDocker) && inDocker;
 
+var hostName = IsRunningInContainer ? Common.RabbitMqConsts.RabbitMqHostName_container : Common.RabbitMqConsts.RabbitMqHostName_local;
 builder.Services.AddMassTransit(mt => mt.AddMassTransit(x => {
     x.UsingRabbitMq((cntxt, cfg) => {
-        cfg.Host(new Uri(Common.RabbitMqConsts.RabbitMqUri), c => {
+        cfg.Host(hostName,
+        "/", 
+        c => {
             c.Username(Common.RabbitMqConsts.UserName);
             c.Password(Common.RabbitMqConsts.Password);
         });
