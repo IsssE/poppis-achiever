@@ -12,11 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
   
-  build:
-    needs: checkout
-    strategy:
-      matrix:
-        service: ["server/services/User", "server/services/GraphQL"]
-    uses: "./.github/workflows/backend-services-build.yaml"
-    with:
-      directory: ${{ matrix.service }}
+    # dotnet build and publish
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+    
