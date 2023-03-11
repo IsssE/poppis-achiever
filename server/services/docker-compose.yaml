@@ -1,5 +1,13 @@
 version: "3.2"
 services:
+  common:
+    build:
+      context: ./Common
+      dockerfile: ./Dockerfile
+  graphQL:
+    build:
+      context: ./graphQL
+      dockerfile: ./Dockerfile
   user:
     container_name: service.user
     build:
