@@ -15,7 +15,15 @@ public class KyykkaQuery : ObjectGraphType<object>
         .Arguments(new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the user" }
             ))
-        .ResolveAsync(async ctx => await data.GetUserByIdAsync(ctx, "1")
-        );
+        .ResolveAsync(async ctx =>
+        {
+            var response = await data.GetUserByIdAsync("1");
+            return new User()
+            {
+                Id = response.Message.Id,
+                Name = response.Message.Name,
+            };
+        });
+        
     }
 }

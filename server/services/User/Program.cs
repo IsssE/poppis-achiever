@@ -23,15 +23,11 @@ builder.Services.AddMassTransit(x =>
             h.Password(Common.RabbitMqConsts.Password);
         });
 
-        busFactoryConfigurator.ReceiveEndpoint("user-created-event", e =>
-        {
-            e.Consumer<UserCreatedConsumer>();
-        });
 
         busFactoryConfigurator.ConfigureEndpoints(context);
     });
 
-    //x.AddConsumer<UserCreatedConsumer>();
+    x.AddConsumer<UserCreatedConsumer>();
 });
 
 

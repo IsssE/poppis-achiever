@@ -23,10 +23,13 @@ public class KyykkaData
         _Users.Add(Users);
         return Users;
     }
-    public Task<Response<User>> GetUserByIdAsync(IResolveFieldContext ctx, string id)
+    public Task<Response<UserDTO>> GetUserByIdAsync(string id)
     {
-        var response = _publishEndpoint.CreateRequestClient<UserRequested>().GetResponse<User>(new { MessageId = id });
-        return response;
+        var result =  _publishEndpoint
+            .CreateRequestClient<UserRequested>()
+            .GetResponse<UserDTO>(new UserRequested (){ Id = id });
+        
+        return result;
+
     }
-    
 }

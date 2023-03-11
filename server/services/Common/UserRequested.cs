@@ -8,6 +8,6 @@ namespace Common
 {
     public class UserRequested
     {
-        int Id { get; set; }
+        public string Id { get; set; } = string.Empty;
     }
 }

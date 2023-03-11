@@ -8,8 +8,7 @@ namespace User.service
     {
         public Task Consume(ConsumeContext<UserRequested> context)
         {
-            
-            context.RespondAsync(new UserDTO(Id: context.Message.ToString(), Name: "message response dude"));
+            context.RespondAsync(new UserDTO(Id: context.Message.Id, Name: "message response dude"));
             return Task.CompletedTask;
         }
     }
