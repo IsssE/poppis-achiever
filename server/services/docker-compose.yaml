@@ -1,13 +1,17 @@
 version: "3.2"
 services:
   common:
+    container_name: service.commons
     build:
       context: ./Common
       dockerfile: ./Dockerfile
-  graphQL:
+  graphql:
+    container_name: service.graphql
     build:
       context: ./graphQL
       dockerfile: ./Dockerfile
+    ports:
+      - 7000:5010
   user:
     container_name: service.user
     build:
