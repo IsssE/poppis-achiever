@@ -1,15 +1,14 @@
 ﻿using Common;
 using MassTransit;
-using Newtonsoft.Json;
 
-namespace User.service
+namespace User.service;
+
+public class UserCreatedConsumer : IConsumer<UserRequested>
 {
-    public class UserCreatedConsumer : IConsumer<UserRequested>
+    public Task Consume(ConsumeContext<UserRequested> context)
     {
-        public Task Consume(ConsumeContext<UserRequested> context)
-        {
-            context.RespondAsync(new UserDTO(Id: context.Message.Id, Name: "message response dude"));
-            return Task.CompletedTask;
-        }
+        context.RespondAsync(new UserDTO(Id: context.Message.Id, Name: "message response dude"));
+        return Task.CompletedTask;
     }
 }
+

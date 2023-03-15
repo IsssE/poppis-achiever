@@ -1,6 +1,4 @@
 using GraphQL;
-using GraphQL.Types;
-using GraphQLService.Controllers;
 using Kyykka;
 using Kyykka.Types;
 using MassTransit;
