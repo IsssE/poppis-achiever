@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQLService", "GraphQL\GraphQLService.csproj", "{66B8D7A4-5F72-40DA-81AB-8404538AF965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.Gateway", "GraphQL\GraphQL.Gateway.csproj", "{66B8D7A4-5F72-40DA-81AB-8404538AF965}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User", "User\User.csproj", "{74276661-2651-4AD1-9B30-D0B7A55AF478}"
 EndProject
