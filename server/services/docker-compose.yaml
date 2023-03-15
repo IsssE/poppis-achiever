@@ -19,7 +19,7 @@ services:
   graphql:
     container_name: service.graphql
     build:
-      dockerfile: Dockerfile.graphql.service
+      dockerfile: Dockerfile.graphql.gateway
     ports:
       - 7000:5010
     networks:
