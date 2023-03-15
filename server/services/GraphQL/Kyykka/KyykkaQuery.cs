@@ -11,13 +11,14 @@ public class KyykkaQuery : ObjectGraphType<object>
     {
         Name = "Query";
 
-        Field<UserType>("getUser_Messaging")
+        Field<UserType>("getUser")
         .Arguments(new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "id", Description = "id of the user" }
             ))
         .ResolveAsync(async ctx =>
         {
-            var response = await data.GetUserByIdAsync("1");
+            var id = ctx.GetArgument<string>("id");
+            var response = await data.GetUserByIdAsync(id);
             return new User()
             {
                 Id = response.Message.Id,

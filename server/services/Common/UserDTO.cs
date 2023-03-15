@@ -6,5 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public record UserDTO(string Id, string Name);
+    public class UserDTO {
+        public string Id {get; set;} = null!;
+        public string Name {get; set;} = null!; 
+
+    }
 }

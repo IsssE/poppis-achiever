@@ -1,13 +1,11 @@
 using MassTransit;
-using MassTransit.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using User.service;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Had swagger, removed for now
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 bool IsRunningInContainer = bool.TryParse(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), out var inDocker) && inDocker;
 
@@ -20,7 +18,8 @@ builder.Services.AddMassTransit(x =>
     {
         busFactoryConfigurator.Host(hostName,
         "/",
-        h => {
+        h =>
+        {
             h.Username(Common.RabbitMqConsts.UserName);
             h.Password(Common.RabbitMqConsts.Password);
         });
@@ -29,20 +28,27 @@ builder.Services.AddMassTransit(x =>
         busFactoryConfigurator.ConfigureEndpoints(context);
     });
 
-    x.AddConsumer<UserCreatedConsumer>();
+    x.AddConsumer<UserRequestedConsumer>();
 });
+
+var connectionString = IsRunningInContainer ? "ConnectionStringContainer" : "ConnectionStringLocalDev";
+
+builder.Services.AddDbContext<UserDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString(connectionString)));
+
+
 
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<UserDbContext>();
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+    }
 }
-
-
-//app.MapControllers();
-
 
 app.Run();
