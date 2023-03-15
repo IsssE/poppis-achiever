@@ -4,6 +4,7 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: 'rabbitmq'
+    # Secreties these
     environment:
     - 'RABBITMQ_DEFAULT_PASS=guest'
     - 'RABBITMQ_DEFAULT_USER=guest'
@@ -36,6 +37,22 @@ services:
       - rabbitmq_network
     depends_on:
       - rabbitmq
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    # Secreties these
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db: 
+    driver: local
 
 networks:
   rabbitmq_network:
