@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile.user
       context: .
       args:
-        - PASSWORD=${DB_SERVICE_USER_PASSWORD:-${{ secrets.DB_SERVICE_USER_PASSWORD }}}
+        - PASSWORD=${DB_SERVICE_USER_PASSWORD}
         - DOTNET_CLI_HOME=/tmp # Chatgpt said this is necessary to install ef globally :shrug:
     ports:
       - 8000:5000
@@ -54,7 +54,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       # - POSTGRES_PASSWORD=${DB_SERVICE_USER_PASSWORD}
-      - POSTGRES_PASSWORD=${DB_SERVICE_USER_PASSWORD:-${{ secrets.DB_SERVICE_USER_PASSWORD }}}
+      - POSTGRES_PASSWORD=${DB_SERVICE_USER_PASSWORD}
     ports:
       - '5432:5432'
     volumes: 
