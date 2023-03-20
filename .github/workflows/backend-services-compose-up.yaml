@@ -19,6 +19,11 @@ jobs:
 
     - name: Docker Compose Up
       run: docker compose -f $COMPOSE_LOCATION up -d
+        with: 
+          secrets: |
+            "DB_SERVICE_USER_PASSWORD"=${{secrets.DB_SERVICE_USER_PASSWORD}}
+
+      
 
     #kill containers, for now
     - name: Docker Compose kill
