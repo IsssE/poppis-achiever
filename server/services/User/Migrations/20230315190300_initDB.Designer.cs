@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using User.service;
+using User.Service;
 
 #nullable disable
 
 namespace User.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(Data.UserDbContext))]
     [Migration("20230315190300_initDB")]
     partial class initDB
     {

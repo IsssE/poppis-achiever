@@ -1,4 +1,4 @@
-General ide for the project
+General idea for the project
 
 ```mermaid
     flowchart TD

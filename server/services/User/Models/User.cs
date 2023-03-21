@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace User.service;
+namespace User.Models;
 
 public class User {
     [Key]

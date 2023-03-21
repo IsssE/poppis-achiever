@@ -19,12 +19,9 @@ public class KyykkaQuery : ObjectGraphType<object>
         {
             var id = ctx.GetArgument<string>("id");
             var response = await data.GetUserByIdAsync(id);
-            return new User()
-            {
-                Id = response.Message.Id,
-                Name = response.Message.Name,
-            };
+            return new User(response.Message.Id, response.Message.Name);
         });
+        
         
     }
 }

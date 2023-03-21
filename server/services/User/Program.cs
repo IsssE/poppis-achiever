@@ -1,7 +1,9 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using User.service;
+using User.Data;
+using User.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Had swagger, removed for now
@@ -29,6 +31,9 @@ builder.Services.AddMassTransit(x =>
     });
 
     x.AddConsumer<UserRequestedConsumer>();
+    x.AddConsumer<UserCreateConsumer>();
+    x.AddConsumer<UserDeleteConsumer>();
+    x.AddConsumer<UserUpdateConsumer>();
 });
 
 var connectionString = IsRunningInContainer ? "ConnectionStringContainer" : "ConnectionStringLocalDev";
