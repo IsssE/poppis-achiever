@@ -1,7 +1,7 @@
 General ide for the project
 
 ```mermaid
-    flowchart BT
+    flowchart TD
         subgraph SPA
         A(Svelte)        
         end
@@ -23,30 +23,39 @@ General ide for the project
             subgraph docker.achievemnt [docker]
             E(Achievement.Service)
             end
-            
-            subgraph docker.Postgre [docker]
-            G[(PostgreSQL)]
-            end
 
             subgraph docker.Rabbit [docker]
             H(RabbitMQ)
             end
 
+            
+            subgraph docker.Postgre [docker]
+            DB[(PostgreSQL - server)]
+            C.DB[(DB)]
+            D.DB[(DB)]
+            E.DB[(DB)]
+            end
+
         F(Common.library)
         end
-        G --- C
-        G --- D
-        G --- E
 
-        gql --- A 
-              
-        H ---- gql
-        H ---- gql
-        H ---- gql
+        gql --- H
+        
+        A --- gql
+
 
         C ---- H
         D ---- H
         E ---- H
+
+        E.DB ----- E
+        D.DB ----- D
+        C.DB ----- C
+
+        DB---C.DB
+        DB---D.DB
+        DB---E.DB
+              
         
 docker.user:::dockerClass
 docker.calculator:::dockerClass
