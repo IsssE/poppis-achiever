@@ -20,6 +20,7 @@ services:
     container_name: service.graphql
     build:
       dockerfile: Dockerfile.graphql.gateway
+      context: .
     ports:
       - 7000:5010
     networks:
@@ -30,25 +31,36 @@ services:
   user:
     container_name: service.user
     build:
-      dockerfile: Dockerfile.user.service
+      dockerfile: Dockerfile.user
+      context: .
+      args:
+        - PASSWORD=${DB_SERVICE_USER_PASSWORD}
+        - DOTNET_CLI_HOME=/tmp # Chatgpt said this is necessary to install ef globally :shrug:
     ports:
       - 8000:5000
     networks:
       - rabbitmq_network
+      - db_network
     depends_on:
       - rabbitmq
-
+      - db
+      - graphql
+    command: dotnet ef database update  
+    
   db:
-    image: postgres:14.1-alpine
+    container_name: server.postgres.pulu
+    image: postgres:15
     restart: always
-    # Secreties these
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      # - POSTGRES_PASSWORD=${DB_SERVICE_USER_PASSWORD}
+      - POSTGRES_PASSWORD=${DB_SERVICE_USER_PASSWORD}
     ports:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
+    networks:
+      - db_network
 
 volumes:
   db: 
@@ -56,4 +68,6 @@ volumes:
 
 networks:
   rabbitmq_network:
+    driver: bridge
+  db_network:
     driver: bridge
