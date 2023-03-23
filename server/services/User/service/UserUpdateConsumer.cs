@@ -14,17 +14,17 @@ public class UserUpdateConsumer : IConsumer<UserUpdateRequested>
     }
     public Task Consume(ConsumeContext<UserUpdateRequested> context)
     {
-        var updatedUser = _dbContext.Users.FirstOrDefault(x => x.Id == context.Message.Id);
+        var updatedUser = _dbContext.Users.FirstOrDefault(x => x.UserId == context.Message.Id);
         if (updatedUser == null)
         {
             // TODO: see if this could be loaded as a meta information rather than thrown error that stops creation
             throw new GraphQL.ExecutionError($"There already is a user with the name: {context.Message.Name}");
         }
 
-        updatedUser.Name = context.Message.Name;
+        updatedUser.DisplayName = context.Message.Name;
         _dbContext.SaveChanges();
 
-        var result = new UserDTO() { Id = updatedUser.Id, Name = updatedUser.Name };
+        var result = new UserDTO() { UserId = updatedUser.UserId, DisplayName = updatedUser.DisplayName };
         context.RespondAsync(result);
 
         return Task.CompletedTask;

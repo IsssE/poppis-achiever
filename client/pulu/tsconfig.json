@@ -8,7 +8,11 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"ignoreDeprecations": "5.0" 
+		// Svelte extends some settings that use importsNotUsedAsValues
+		// Remove ignore after a while and see if stuff is updated
+		// "verbatimModuleSyntax": true
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

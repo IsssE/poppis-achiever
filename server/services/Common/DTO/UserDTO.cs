@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Common.DTO;
 
-namespace Common.DTO
+public class UserDTO
 {
-    public class UserDTO
-    {
-        public string? Id { get; set; } = string.Empty;
-        public string? Name { get; set; } = string.Empty;
+    public string? UserId { get; set; } = string.Empty;
+    public string? DisplayName { get; set; } = string.Empty;
 
-    }
 }

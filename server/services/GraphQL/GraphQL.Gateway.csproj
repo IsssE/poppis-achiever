@@ -10,6 +10,7 @@
     <PackageReference Include="GraphQL.Server.All" Version="7.3.0" />
     <PackageReference Include="MassTransit" Version="8.0.13" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
   </ItemGroup>
 
   <ItemGroup>

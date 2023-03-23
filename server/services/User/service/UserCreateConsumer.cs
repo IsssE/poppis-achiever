@@ -1,11 +1,12 @@
 ﻿using Common.DTO;
+using Common.Event;
 using Common.Requests;
 using GraphQL;
 using MassTransit;
 
 namespace User.Service;
 
-public class UserCreateConsumer : IConsumer<UserCreateRequested>
+public class UserCreateConsumer : IConsumer<UserCreateEvent>
 {
     private Data.UserDbContext _dbContext;
     public UserCreateConsumer(Data.UserDbContext context)
@@ -13,28 +14,27 @@ public class UserCreateConsumer : IConsumer<UserCreateRequested>
         this._dbContext = context;
     }
 
-    public Task Consume(ConsumeContext<UserCreateRequested> context)
+    public Task Consume(ConsumeContext<UserCreateEvent> context)
     {
-        var dbVal = _dbContext.Users.FirstOrDefault(x => x.Name == context.Message.Name);
+        var dbVal = _dbContext.Users.FirstOrDefault(x => x.DisplayName.ToLower() == context.Message.UserId.ToLower());
         if (dbVal != null)
         {
             // TODO: see if this could be loaded as a meta information rather than thrown error that stops creation
-            throw new ExecutionError($"There already is a user with the name: {context.Message.Name}");
+            throw new ExecutionError($"There already is a user with the name: {context.Message.UserId}");
         }
-
-        var newId = Guid.NewGuid().ToString();
-        var newUser = new Models.User() { Id = newId, Name = context.Message.Name };
+        var displayName = context.Message.DisplayName ?? context.Message.UserId;
+        var newUser = new Models.User() { UserId = context.Message.UserId, DisplayName = displayName };
         
         // Just a temp debugging value
-        if (newUser.Name == "test")
+        if (newUser.DisplayName == "test")
         {
-            newUser.Id = "-1";
+            newUser.UserId = "-1";
         }
 
         _dbContext.Add(newUser);
         _dbContext.SaveChanges();
 
-        var result = new UserDTO() { Id = newUser.Id, Name = newUser.Name };
+        var result = new UserDTO() { UserId = newUser.UserId, DisplayName = displayName };
         context.RespondAsync(result);
         
         // context.RespondAsync(new UserDTO() {Id= dbVal.Id, Name = dbVal.Name});

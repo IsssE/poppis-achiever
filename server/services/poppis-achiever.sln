@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User", "User\User.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{386BE33C-33EF-425F-BA0F-B1F09A568FC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{8121049F-236E-47F8-B9E5-ECADFA0DB245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{386BE33C-33EF-425F-BA0F-B1F09A568FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{386BE33C-33EF-425F-BA0F-B1F09A568FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{386BE33C-33EF-425F-BA0F-B1F09A568FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8121049F-236E-47F8-B9E5-ECADFA0DB245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8121049F-236E-47F8-B9E5-ECADFA0DB245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8121049F-236E-47F8-B9E5-ECADFA0DB245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8121049F-236E-47F8-B9E5-ECADFA0DB245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

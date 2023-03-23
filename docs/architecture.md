@@ -15,6 +15,10 @@ General idea for the project
             subgraph docker.user [docker]
             C(User.Service)
             end
+
+            subgraph docker.auth [docker]
+            C.A(Auth.Service)
+            end
             
             subgraph docker.calculator [docker]
             D(PointCalculator.Service)
@@ -45,6 +49,7 @@ General idea for the project
 
 
         C ---- H
+        C.A --- H 
         D ---- H
         E ---- H
 
@@ -63,6 +68,7 @@ docker.achievemnt:::dockerClass
 docker.Postgre:::dockerClass
 docker.Rabbit:::dockerClass
 docker.gql:::dockerClass
+docker.auth:::dockerClass
 
 classDef dockerClass fill:#0560ab,text-align:left
         
