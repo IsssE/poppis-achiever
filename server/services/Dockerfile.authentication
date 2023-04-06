@@ -38,5 +38,6 @@ COPY --from=publish /app/publish .
 
 ARG PASSWORD
 RUN sed -i "s/__DB-PASSWORD__/$PASSWORD/g" appsettings.json
+RUN sed -i 's/"Key":.*/"Key": "$JWT_SECRET_TOKEN_KEY_VALUE",/' appsettings.json
 
 ENTRYPOINT ["dotnet", "Authentication.dll"]

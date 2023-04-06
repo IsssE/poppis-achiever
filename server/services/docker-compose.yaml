@@ -35,6 +35,7 @@ services:
       context: .
       args:
         - PASSWORD=${DB_SERVICE_AUTHENTICATION_PASSWORD}
+        - SECRET_TOKEN_KEY_VALUE=${JWT_SECRET_TOKEN_KEY_VALUE}
         - DOTNET_CLI_HOME=/tmp # Chatgpt said this is necessary to install ef globally :shrug:
     ports:
       - 8020:5020
