@@ -8,7 +8,6 @@
 	let loggedUser: ICurrentUser;
 
 	store.subscribe((update) => {
-		console.log('Store updated: ', update.currentUser);
 		loggedUser = update.currentUser;
 	});
 	onMount(async () => {

@@ -16,10 +16,6 @@ export const getUserData = (id: string): Promise<{ getUser: IUserData }> => {
 		}
 	`;
 	const variables = { id: id };
-	console.log('sending user shit', id);
 
-	clientGQL.request(query, variables).then((res) => {
-		console.log('response from getUser: ', res);
-	});
 	return clientGQL.request(query, variables);
 };

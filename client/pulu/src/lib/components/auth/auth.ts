@@ -30,7 +30,6 @@ export const getLoginUser = (user: string, password: string) => {
 
 	clientGQL.request<{ getToken: string }>(query, variables).then((res) => {
 		store.setUser({ id: user, displayName: user });
-		console.log(res);
 	});
 };
 
@@ -41,11 +40,8 @@ export const getToken = () => {
 		}
 	`;
 
-	console.log('requesting: get token');
 	clientGQL.request<{ getIdForToken: string }>(query).then((res) => {
-		console.log('response:', res);
 		getUserData(res.getIdForToken).then((userData) => {
-			console.log('userData', userData);
 			store.setUser({
 				id: userData.getUser.userId,
 				displayName: userData.getUser.displayName
