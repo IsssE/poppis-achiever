@@ -15,7 +15,7 @@ public class UserDeleteConsumer : IConsumer<UserDeleteRequested>
     }
     public Task Consume(ConsumeContext<UserDeleteRequested> context)
     {
-        var dbVal = _dbContext.Users.FirstOrDefault(x => x.Id == context.Message.Id);
+        var dbVal = _dbContext.Users.FirstOrDefault(x => x.UserId == context.Message.Id);
         if (dbVal == null)
         {
             // TODO: see if this could be loaded as a meta information rather than thrown error that stops creation
@@ -25,7 +25,7 @@ public class UserDeleteConsumer : IConsumer<UserDeleteRequested>
 
         _dbContext.Remove(dbVal);
         _dbContext.SaveChanges();
-        var deletedUser = new UserDTO() { Id = context.Message.Id, Name = string.Empty };
+        var deletedUser = new UserDTO() { UserId = context.Message.Id, DisplayName = string.Empty };
         context.RespondAsync(deletedUser);
         
         // context.RespondAsync(new UserDTO() {Id= dbVal.Id, Name = dbVal.Name});

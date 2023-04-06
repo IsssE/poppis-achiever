@@ -28,6 +28,24 @@ services:
     depends_on:
       - rabbitmq
   
+  authentication:
+    container_name: service.authentication
+    build:
+      dockerfile: Dockerfile.authentication
+      context: .
+      args:
+        - PASSWORD=${DB_SERVICE_AUTHENTICATION_PASSWORD}
+        - DOTNET_CLI_HOME=/tmp # Chatgpt said this is necessary to install ef globally :shrug:
+    ports:
+      - 8020:5020
+    networks:
+      - rabbitmq_network
+      - db_network
+    depends_on:
+      - rabbitmq
+      - db
+      - graphql
+
   user:
     container_name: service.user
     build:
@@ -45,7 +63,6 @@ services:
       - rabbitmq
       - db
       - graphql
-    command: dotnet ef database update  
     
   db:
     container_name: server.postgres.pulu

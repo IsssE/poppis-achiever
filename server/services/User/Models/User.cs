@@ -4,7 +4,7 @@ namespace User.Models;
 
 public class User {
     [Key]
-    public required string Id {get; set;} = string.Empty;
+    public required string UserId {get; set;} = string.Empty;
 
-    public string Name {get; set;} = string.Empty;
+    public string DisplayName {get; set;} = string.Empty;
 }

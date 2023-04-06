@@ -15,12 +15,12 @@ public class UserRequestedConsumer : IConsumer<UserGetRequested>
 
     public Task Consume(ConsumeContext<UserGetRequested> context)
     {
-        var dbVal = _dbContext.Users.FirstOrDefault(x => x.Id == context.Message.Id);
+        var dbVal = _dbContext.Users.FirstOrDefault(x => x.UserId == context.Message.Id);
         if(dbVal == null) {
             throw new ExecutionError($"Can't find user with id: {context.Message.Id}");
         }
 
-        var result = new UserDTO() { Id = dbVal.Id, Name = dbVal.Name };
+        var result = new UserDTO() { UserId = dbVal.UserId, DisplayName = dbVal.DisplayName };
         context.RespondAsync(result);
 
         // context.RespondAsync(new UserDTO() {Id= dbVal.Id, Name = dbVal.Name});

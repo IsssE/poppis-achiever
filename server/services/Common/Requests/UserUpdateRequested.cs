@@ -6,6 +6,6 @@ public class UserUpdateRequested
         this.Id = id;
         this.Name = name; 
     }
-    public string Id { get; set; } = null!;
-    public string Name { get; set; } = null!;
+    public string Id { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 }
