@@ -32,6 +32,11 @@ jobs:
         working-directory: client/pulu/
         run: npm install
 
+      # Ran to fix svelte environment type vars
+      - name: Install dependencies
+        working-directory: client/pulu/
+        run: npm run check
+
       - name: Build
         working-directory: client/pulu/
         run: npm run build
