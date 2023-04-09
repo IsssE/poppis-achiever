@@ -25,7 +25,6 @@ jobs:
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v3
-        working-directory: client/pulu/
         with:
           node-version: "14.x"
 
