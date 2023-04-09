@@ -27,6 +27,7 @@ services:
       - rabbitmq_network
     depends_on:
       - rabbitmq
+    image: IsssE/pulu-service-graphql-gateway:latest
   
   authentication:
     container_name: service.authentication
@@ -46,6 +47,7 @@ services:
       - rabbitmq
       - db
       - graphql
+    image: IsssE/pulu-service-authentication:latest
 
   user:
     container_name: service.user
@@ -64,9 +66,10 @@ services:
       - rabbitmq
       - db
       - graphql
-    
+    image: IsssE/pulu-service-user:latest
+
   db:
-    container_name: server.postgres.pulu
+    container_name: db.postgres.pulu
     image: postgres:15
     restart: always
     environment:
