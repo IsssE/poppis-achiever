@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        working-directory: client/pulu/
+        with:
+          node-version: "14.x"
+
+      - name: Install dependencies
+        working-directory: client/pulu/
+        run: npm install
+
+      - name: Build
+        working-directory: client/pulu/
+        run: npm run build
