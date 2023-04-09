@@ -24,6 +24,8 @@ jobs:
           password: ${{ secrets.GH_PAT }}
 
       - name: Build and push Docker images
+        env:
+          DB_SERVICE_USER_PASSWORD: ${{ secrets.DB_SERVICE_USER_PASSWORD }}
         run: |
-          docker-compose build
-          docker-compose push
+          docker-compose -f $COMPOSE_LOCATION build -d
+          docker-compose -f $COMPOSE_LOCATION push -d
