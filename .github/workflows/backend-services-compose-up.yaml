@@ -27,5 +27,5 @@ jobs:
         env:
           DB_SERVICE_USER_PASSWORD: ${{ secrets.DB_SERVICE_USER_PASSWORD }}
         run: |
-          docker-compose -f $COMPOSE_LOCATION build -d
-          docker-compose -f $COMPOSE_LOCATION push -d
+          docker-compose -f $COMPOSE_LOCATION build
+          docker-compose -f $COMPOSE_LOCATION push
