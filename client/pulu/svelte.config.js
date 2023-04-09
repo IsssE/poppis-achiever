@@ -18,10 +18,7 @@ const config = {
 				formats: ['jpeg', 'png', 'webp'],
 			  },
 		})
-	},
-	// This will tell SvelteKit to look for the /static/public directory relative to the /src directory, 
-	// which may be more consistent with your GitHub Actions workflow.
-    srcDir: "src" 
+	}
 };
 
 export default config;
