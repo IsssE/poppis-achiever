@@ -13,6 +13,8 @@
 		registerUser(username, password, displayName).then((res) => {
 			getLoginUser(res.registerUser.userId, password);
 			dispatch('closeModal');
+		}).catch(() => {
+			alert("something went wrong")
 		});
 	};
 </script>

@@ -24,12 +24,15 @@ export const getLoginUser = (user: string, password: string) => {
 	const query = gql`
 		query ($id: String!, $password: String!) {
 			getToken(userName: $id, password: $password)
+			getUser(id: $id) {
+				displayName
+			}
 		}
 	`;
 	const variables = { id: user, password: password };
 
-	clientGQL.request<{ getToken: string }>(query, variables).then((res) => {
-		store.setUser({ id: user, displayName: user });
+	clientGQL.request<{ getToken: string, getUser: {displayName: string} }>(query, variables).then((res) => {
+		store.setUser({ id: user, displayName: res.getUser.displayName });
 	});
 };
 
