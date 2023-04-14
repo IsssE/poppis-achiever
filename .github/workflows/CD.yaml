@@ -1,0 +1,29 @@
+name: deploy-to-azure
+
+on:
+  workflow_run:
+    workflows: ["Docker Compose push all images"]
+    types:
+      - completed
+
+env:
+  COMPOSE_LOCATION: server/services/docker-compose.yaml
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to Azure Container Instances
+      uses: azure/aci-deploy@v1
+      with:
+        resource-group: rg_pulu
+        dns-name-label: pulu
+        image: ghcr.io/issse/poppis-achiever/pulu-service-graphql-gateway:latest
+        registry-login-server: ghcr.io
+        registry-username: ${{ github.actor }}
+        registry-password: ${{ secrets.GH_PAT }}
+        compose-file: $COMPOSE_LOCATION
