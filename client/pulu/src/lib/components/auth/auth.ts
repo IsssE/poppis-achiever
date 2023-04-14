@@ -20,7 +20,8 @@ export const registerUser = (
 	return clientGQL.request(mutation, variables);
 };
 
-export const getLoginUser = (user: string, password: string) => {
+export const loginUser = (user: string, password: string) => {
+	
 	const query = gql`
 		query ($id: String!, $password: String!) {
 			getToken(userName: $id, password: $password)
@@ -31,12 +32,10 @@ export const getLoginUser = (user: string, password: string) => {
 	`;
 	const variables = { id: user, password: password };
 
-	clientGQL.request<{ getToken: string, getUser: {displayName: string} }>(query, variables).then((res) => {
-		store.setUser({ id: user, displayName: res.getUser.displayName });
-	});
+	return clientGQL.request<{ getToken: string, getUser: {displayName: string} }>(query, variables);
 };
 
-export const getToken = () => {
+export const getIdWithToken = () => {
 	const query = gql`
 		query {
 			getIdForToken
@@ -49,6 +48,8 @@ export const getToken = () => {
 				id: userData.getUser.userId,
 				displayName: userData.getUser.displayName
 			});
-		});
-	});
+		})
+	}).catch(()=>{
+		// no need to handle fail currently
+	});;
 };

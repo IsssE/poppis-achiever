@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { getLoginUser, registerUser } from './auth';
+	import { loginUser, registerUser } from './auth';
 
 	const dispatch = createEventDispatcher();
+
+	let error = false;
 
 	export const handleRegistration = async (event: SubmitEvent) => {
 		const formData = new FormData(event.target as HTMLFormElement);
@@ -10,17 +12,23 @@
 		const password = formData.get('password') as string;
 		const displayName = formData.get('displayName') as string;
 
-		registerUser(username, password, displayName).then((res) => {
-			getLoginUser(res.registerUser.userId, password);
-			dispatch('closeModal');
-		}).catch(() => {
-			alert("something went wrong")
-		});
+		registerUser(username, password, displayName)
+			.then((res) => {
+				error = false;
+				loginUser(res.registerUser.userId, password);
+				dispatch('closeModal');
+			})
+			.catch(() => {
+				error = true;
+			});
 	};
 </script>
 
 <form on:submit|preventDefault={handleRegistration} class="flex flex-col w-64">
-	<div class="flex flex-col py-2 ">
+	{#if error}
+		<div class=" text-red-700 text-center">Problem in Registering user</div>
+	{/if}
+	<div class="flex flex-col py-2">
 		<div>Username</div>
 		<input
 			required
@@ -30,7 +38,7 @@
 		/>
 	</div>
 
-	<div class="flex flex-col py-2 ">
+	<div class="flex flex-col py-2">
 		<div>Display Name</div>
 		<input
 			required
@@ -40,7 +48,7 @@
 		/>
 	</div>
 
-	<div class="flex flex-col py-2 ">
+	<div class="flex flex-col py-2">
 		<div>Password</div>
 		<input
 			required

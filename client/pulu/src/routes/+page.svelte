@@ -3,7 +3,7 @@
 	import store from '$lib/userStore';
 	import type { ICurrentUser } from '$lib/types';
 	import { onMount } from 'svelte';
-	import { getToken } from '$lib/components/auth/auth';
+	import { getIdWithToken } from '$lib/components/auth/auth';
 
 	let loggedUser: ICurrentUser;
 
@@ -11,7 +11,7 @@
 		loggedUser = update.currentUser;
 	});
 	onMount(async () => {
-		getToken();
+		getIdWithToken();
 	});
 </script>
 
