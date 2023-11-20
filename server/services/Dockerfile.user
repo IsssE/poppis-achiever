@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
 
 WORKDIR /app
 EXPOSE 5000
@@ -14,7 +14,7 @@ USER appuser
 
 # SKD was used only in build. Issues came when needing to run EF for migrations. 
 # Using sdk as base for now 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 RUN dotnet tool install --global dotnet-ef
